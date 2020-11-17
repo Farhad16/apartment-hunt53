@@ -1,0 +1,26 @@
+.apartment-banner{
+    background-image: url(../../../../images/Banner.png);
+    padding: 150px 0;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+}
+.apartment-banner::after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.75;
+    z-index: -1;
+}
+
+.banner-thumb img{width: 24%;}
+.banner-thumb{
+    display: flex;
+    justify-content: space-between;
+}
