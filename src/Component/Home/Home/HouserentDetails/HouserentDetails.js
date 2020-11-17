@@ -19,7 +19,8 @@ const HouserentDetails = () => {
         .then(res=> res.json())
         .then(data=>setApartment(data))
     }, [])
-   console.log(apartment);
+
+    
    const { register, handleSubmit, errors, control } = useForm();
    const onSubmit = data => {
        const rentDetails= {...data, ...apartment, status: 'pending', color: 'red' }
@@ -32,11 +33,8 @@ const HouserentDetails = () => {
         body: JSON.stringify(rentDetails)
         })
         .then(res=>res.json())
-        .then(data=>{
-            
-            data? alert("order success full"): console.log(data)
-        
-            
+        .then(data=>{    
+            data? alert("order success full"): console.log(data)   
         })
    }
     

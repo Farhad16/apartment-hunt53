@@ -5,7 +5,8 @@ import google from '../../images/logo/google.png'
 import { useHistory, useLocation } from 'react-router-dom';
 import { UserContext } from '../../App';
 import { createUserWithEmailAndPassword, handleFbSignIn, handleGoogleSignIn, initializeFramework, signInWithEmailAndPassword } from './LoginManager';
-
+import firebase from "firebase/app";
+import "firebase/auth";
 
 const Login = () => {
     const [message, setMessage] = useState('');
@@ -48,6 +49,16 @@ const Login = () => {
             .then(res => {
                 handleResponse(res, true)
             })
+    }
+
+    const storeAuthToken = () => {
+        firebase.auth().currentUser.getIdToken(/* forceRefresh */ true)
+            .then(function (idToken) {
+                sessionStorage.setItem('token', idToken);
+                history.replace(from);
+            }).catch(function (error) {
+                // Handle error
+            });
     }
 
 
@@ -125,6 +136,7 @@ const Login = () => {
         setNewUser(res)
         setUser(res);
         setSignInUser(res);
+        storeAuthToken();
         if (redirect) {
             history.replace(from);
         }

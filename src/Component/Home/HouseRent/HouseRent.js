@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import place from '../../../images/location.png';
-import bath from '../../../images/bath.png';
-import bed from '../../../images/bed.png';
 
 import { Link, useHistory } from 'react-router-dom';
+import House from '../House/House';
 import "./HouseRent.css"
 
 const HouseRent = () => {
@@ -31,37 +29,7 @@ const HouseRent = () => {
             <div className="container">
                 <div className="row">
                     {
-                        apartment.map(house =>
-                            <div className="col-md-4 rooms" key={house._id}>
-                                <div className="card card_shadow" style={{ marginBottom: "29px", border: "none" }}>
-                                    <img src={house.img} className="card-img-top rentimg" alt="..." />
-                                    <div className="card-body">
-                                        <h5 className="card-title" style={{ color: '#16322E', fontSize: '24px', fontWeight: 'bold' }}>{house.title}</h5>
-                                        <div className="card-text">
-                                            <img src={place} alt="" height="20" width="15" />
-                                            <span style={{ color: '#747474', marginBottom: '8px' }}> {house.location}</span>
-                                        </div>
-                                        <div style={{ display: 'flex', marginBottom: '42px' }}>
-                                            <div>
-                                                <img src={bed} alt="" height="20" width="15" />
-                                                <span style={{ color: '#747474' }}> {house.bedRoom} </span>
-                                            </div>
-                                            <div style={{ marginLeft: '60px' }}>
-                                                <img src={bath} alt="" height="20" width="15" />
-                                                <span style={{ color: '#747474' }}> {house.bathRoom} </span>
-                                            </div>
-                                        </div>
-                                        <div style={{ display: 'flex' }}>
-                                            <h2 style={{ marginRight: '60px', color: '#275A53', fontSize: '36px', fontWeight: 'bold' }}>${house.price}</h2>
-                                            <Link to={"/houserentdetails/" + house._id}>
-                                                <button className="btn-brand" style={{ padding: "13px 20px" }}>View Details</button>
-                                            </Link>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        )
+                        apartment.map((house, i) => <House key={i} house={house}></House>)
                     }
                 </div>
             </div>
